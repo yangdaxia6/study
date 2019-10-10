@@ -11,8 +11,8 @@ class NewPairLoss(nn.Module):
         self.para_dis = para_dis
 
     def forward(self,x,y):
-        # x : the instance output of the model 
-        # y : the instance ground truth, with different IDs for different instances
+        # x [B, C, H, W]: the instance output of the model 
+        # y [B, H, W]: the instance ground truth, with different IDs for different instances, such as [0, 1, 2] 
         batchSize, feature_dim,_ ,_ = x.shape
         losses = []
         c_losses = []

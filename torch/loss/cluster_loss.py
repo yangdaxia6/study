@@ -53,7 +53,8 @@ class NewPairLoss(nn.Module):
             #print(centers)
             ##calculate l_dist
             centers_inter = centers.repeat(1,totalClass).view(feature_dim,totalClass,totalClass)
-            centers_self_rep = centers.repeat(totalClass,1).permute(1,0).view(totalClass,totalClass,feature_dim).permute(2,0,1)
+            #centers_self_rep = centers.repeat(totalClass,1).permute(1,0).view(totalClass,totalClass,feature_dim).permute(2,0,1)
+            centers_self_rep = centers.permute(0, 2, 1)
             center_diff = torch.add(centers_self_rep,-1,centers_inter)
             center_diff = torch.norm(center_diff,dim = 0)
             center_diff = torch.add(center_diff,-1 * self.delta4Center)
